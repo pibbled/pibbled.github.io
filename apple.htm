@@ -1,0 +1,137 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&effect=fire-animation">
+<style>
+    h1 {
+        color:blue;
+        }
+    body {
+        background-image:url(https://gifdb.com/images/high/river-forest-water-flowing-716ks5aop5xk5jpb.gif);
+        background-size:cover;
+        }
+    #apple {
+        width:400px;
+        height:400px;
+        display: block;
+        }
+    #label{
+        color:#2a5c20;
+        font-size: 100px;
+        font-family: Lobster;
+        display: block;
+        }
+    #restart{
+        color:blue;
+        font-size: 100px;
+        font-family: arial;
+        display: none;
+        }
+    #button {
+        width:200px;
+        height:200px;
+        display: block;
+        }
+    #pressedbutton {
+        width:200px;
+        height:200px;
+        display: none;
+        }
+    #explosion {
+        width:400px;
+        height:400px;
+        display: none;
+        }
+    #filler {
+        width:400px;
+        height:400px;
+        display: none;
+        }
+    #loss {
+        color:red;
+        font-size: 200px;
+        font-family: Arial;
+        display: none;
+        }
+    #main {
+        background-color:black;
+        opacity:0.7;
+        height:1000px;
+        width:800px;
+        border: 12px green dashed;
+        margin-top:25px;
+        }
+    #link {
+        color:blue;
+        font-size: 30px;
+        font-family: arial;
+        display: block;
+        }
+        
+</style>
+<script>
+    
+    const running = true;
+    var canpress = true;
+        
+        
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+    
+    
+    
+    async function press() {
+        canpress = false;
+        
+        document.getElementById("button").style.display = "none";
+        document.getElementById("pressedbutton").style.display = "block";
+
+        await sleep(500)
+
+        document.getElementById("button").style.display = "block";
+        document.getElementById("pressedbutton").style.display = "none";
+
+        await sleep(500)
+        document.getElementById("explosion").style.display = "block";
+        document.getElementById("apple").style.display = "none";
+        await sleep(1000)
+        document.getElementById("explosion").style.display = "none";
+        document.getElementById("filler").style.display = "block";
+        await sleep(500)
+        document.getElementById("filler").style.display = "none";
+        document.getElementById("button").style.display = "none";
+        document.getElementById("label").style.display = "none";
+        document.getElementById("loss").style.display = "block";
+        await sleep(500)
+        document.getElementById("restart").style.display = "block";
+        
+    }
+    wait();
+    
+    async function restart() {
+        document.getElementById("button").style.display = "block";
+        document.getElementById("label").style.display = "block";
+        document.getElementById("loss").style.display = "none";
+        document.getElementById("apple").style.display = "block";
+        document.getElementById("explosion").style.display = "none";
+        document.getElementById("restart").style.display = "none";
+        canpress = true;
+    }
+        
+
+    wait();
+    
+</script>
+<body id = "body">
+    <center>
+        <div id = "main">
+        <h1 id="loss" class="font-effect-fire-animation">YOU LOSE</h1>
+        <h1 id="restart" onclick="restart()">Restart?</h1>
+        <img id="explosion" src="https://i.gifer.com/3IsK.gif">
+        <img id="apple" src="https://usagif.com/wp-content/uploads/gifs/apple-74.gif">
+        <img id="filler" src="Untitled.png">
+<h1 id="label" class="font-effect-fire-animation">Apple</h1>
+        
+        <img id="button" onclick="press()" src="https://static.vecteezy.com/system/resources/previews/008/478/197/original/red-button-isolate-backbround-3d-render-png.png">
+        <img id="pressedbutton" src="https://cdn.pixabay.com/photo/2014/04/03/00/32/button-308583_1280.png">
+</div>
+    </center>
+</body>
